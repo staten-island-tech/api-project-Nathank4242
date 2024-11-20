@@ -1,3 +1,7 @@
+const Domselectors = {
+  container: document.querySelector(".container"),
+};
+
 let result = [];
 async function getData() {
   try {
@@ -17,13 +21,18 @@ async function getData() {
 getData();
 async function createCard() {
   await getData();
-  result.data.forEach((thriller) => console.log(thriller.description));
-  Domselectors.container.insertAdjacentHTML(
-    "beforeend",
+  result.data
+    .filter((thing) => thing.category === "monsters")
+    .forEach((thing) => {
+      Domselectors.container.insertAdjacentHTML(
+        "beforeend",
+        `
+        <h2 class="card-description">${thing.description}</h2>
+        <h2 class="card-drops">Drops [ ${thing.drops}]</h2>
+        <img class="card-image" src="${thing.image}" alt="unfound"/>
+
     `
-    <h2>${thriller.description}</h2
-    <img scr="${thriller.image}><img>
-    `
-  );
+      );
+    });
 }
 createCard();

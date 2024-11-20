@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-description {
+  color: black;
+}
+
+.card-drops {
+  color: red;
+}

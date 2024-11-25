@@ -27,10 +27,11 @@ async function createCard() {
       Domselectors.container.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="card border-indigo-600 box-border h-128 w-60 p-4 border-4 ">
-        <h2 class="card-description">${thing.description}</h2>
-        <h2 class="card-drops">Drops [ ${thing.drops}]</h2>
-        <img class="card-img" src="${thing.image}" alt="unfound"/>
+        <div class="card border-indigo-600 box-border min-h-max w-80 p-4 border-4 m-8">
+        <h2 class="card-name text-blue-600 text-lg">Name: ${thing.name}</h2>
+        <h2 class="card-description text-xs">${thing.description}</h2>
+        <img class="card-img size-32" src="${thing.image}" alt="unfound"/>
+        <h2 class="card-drops text-xs">Drops [ ${thing.drops}]</h2>
        </div>
 
         

@@ -10,7 +10,12 @@
   <body>
     <h1 class="text-center text-7xl justify-center">BOTW API</h1>
     <script type="module" src="JS/main.js"></script>
-    <button  id="btn" class="btn btn-primary btn-outline"> click me</button>
+    <button  id="filterMaterialButton" class="btn btn-primary btn-outline"> filter Materials</button>
+    <button  id="filterWeaponButton" class="btn btn-primary btn-outline"> filter Weapons</button>
+    <form action="" id="cardForm">
+      <input type="text" id="name" placeholder="Enter item name . . " required>
+      <button type="submit" id="searchForm">search for card</button>
+    </form>
 
     <div id="container" class="grid grid-cols-4 gap-4 w-full place-items-center">
     </body>

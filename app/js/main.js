@@ -1,5 +1,6 @@
 const Domselectors = {
-  container: document.querySelector(".container"),
+  container: document.querySelector("#container"),
+  btn: document.querySelector("#btn"),
 };
 
 let result = [];
@@ -27,7 +28,7 @@ async function createCard() {
       Domselectors.container.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="card border-indigo-600 box-border min-h-max w-80 p-4 border-8 m-8">
+        <div class="card border-indigo-600 box-border min-h-max w-64 p-4 border-8 m-8">
         <h2 class="card-name text-blue-600 text-xl">Name: ${thing.name}</h2>
         <img class="card-img"src="${thing.image}" alt="unfound"/>
        </div>
@@ -37,6 +38,15 @@ async function createCard() {
     });
 }
 createCard();
+
+function filterMaterial() {
+  const materials = data.filter((thing) => thing.category === "materials");
+  createCards(materials);
+}
+
+document
+  .getElementById("filterMaterialButton")
+  .addEventListener("click", filterMaterial);
 
 //        <h2 class="card-drops text-xs">Drops [ ${thing.drops}]</h2>
 //        <h2 class="card-description text-xs">${thing.description}</h2>

@@ -63,16 +63,14 @@ document
 
 async function filterSearch() {
   await getData();
-  const materials = result.data.filter(
-    (thing) => thing.category === "materials"
-  );
-  createCard(materials);
+  const weapons = result.data.filter((thing) => thing.category === "weapons");
+  createCard(weapons);
 }
 
 document
   .getElementById("searchForm")
   .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
     const searchName = document
       .getElementById("name")

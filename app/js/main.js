@@ -51,38 +51,39 @@ document
   .getElementById("filterMaterialButton")
   .addEventListener("click", filterMaterial);
 
-async function filterWeapons() {
+//weapon sort
+async function filterequipment() {
   await getData();
-  const weapons = result.data.filter((thing) => thing.category === "weapons");
-  createCard(weapons);
+  const equipments = result.data.filter(
+    (thing) => thing.category === "equipment"
+  );
+  createCard(equipments);
 }
 
 document
-  .getElementById("filterWeaponsButton")
-  .addEventListener("click", filterWeapons);
+  .getElementById("filterequipmentButton")
+  .addEventListener("click", filterequipment);
 
 async function filterSearch() {
   await getData();
-  const weapons = result.data.filter((thing) => thing.category === "weapons");
-  createCard(weapons);
+
+  const searchName = document.getElementById("name").value.trim().toLowerCase();
+
+  const filteredItems = result.data.filter((thing) =>
+    thing.name.toLowerCase().includes(searchName)
+  );
+
+  createCard(filteredItems);
+
+  // Clear the input
+  document.getElementById("name").value = "";
 }
 
 document
-  .getElementById("searchForm")
+  .getElementById("cardForm")
   .addEventListener("submit", function (event) {
     event.preventDefault();
+    //preventing default
 
-    const searchName = document
-      .getElementById("name")
-      .value.trim()
-      .toLowerCase(); // Get the input value and convert to lowercase
-
-    // Filter the data based on the entered name
-    const filteredItems = result.data.filter((thing) =>
-      thing.name.toLowerCase().includes(searchName)
-    );
-
-    createCard(filteredItems);
-
-    document.getElementById("name").value = "";
+    filterSearch();
   });

@@ -22,6 +22,7 @@ async function getData() {
   }
 }
 
+//normal card
 async function createCard(data) {
   Domselectors.container.innerHTML = "";
   data.forEach((thing) => {
@@ -39,6 +40,20 @@ async function createCard(data) {
 
 getData();
 
+//creature sort
+async function filtercreature() {
+  await getData();
+  const creatures = result.data.filter(
+    (thing) => thing.category === "creatures"
+  );
+  createCard(creatures);
+}
+
+document
+  .getElementById("filterCreatureButton")
+  .addEventListener("click", filtercreature);
+
+//material sort
 async function filterMaterial() {
   await getData();
   const materials = result.data.filter(
@@ -64,6 +79,31 @@ document
   .getElementById("filterequipmentButton")
   .addEventListener("click", filterequipment);
 
+// monster sort
+async function filtermonster() {
+  await getData();
+  const monsters = result.data.filter((thing) => thing.category === "monsters");
+  createCard(monsters);
+}
+
+document
+  .getElementById("filterMonsterButton")
+  .addEventListener("click", filtermonster);
+
+//treasure sort
+async function filtertreasure() {
+  await getData();
+  const treasures = result.data.filter(
+    (thing) => thing.category === "treasure"
+  );
+  createCard(treasures);
+}
+
+document
+  .getElementById("filterTreasureButton")
+  .addEventListener("click", filtertreasure);
+
+// filter sort
 async function filterSearch() {
   await getData();
 
@@ -73,7 +113,7 @@ async function filterSearch() {
     thing.name.toLowerCase().includes(searchName)
   );
 
-  createCard(filteredItems);
+  searchCard(filteredItems);
 
   // Clear the input
   document.getElementById("name").value = "";
@@ -87,3 +127,28 @@ document
 
     filterSearch();
   });
+
+//search card
+async function searchCard(data) {
+  Domselectors.container.innerHTML = "";
+  data.forEach((thing) => {
+    // Check if drops exists before putting it in a card
+
+    const dropsHTML = thing.drops
+      ? `<h2 class="card-name text-red-500 text-sm">Drops: [${thing.drops}]</h2>`
+      : "";
+
+    Domselectors.container.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="card border-indigo-600 box-border min-h-max w-64 p-4 border-8 m-8">
+        <h2 class="card-name text-blue-600 text-xl">ID: ${thing.id} Name: ${thing.name}</h2>
+        <img class="card-img" src="${thing.image}" alt="unfound"/>
+        <h2 class="card-name text-green-500 text-sm">Locations: ${thing.common_locations}</h2>
+        <h2 class="card-name text-black-600 text-sm">Description: ${thing.description}</h2>
+        ${dropsHTML} 
+      </div>
+    `
+    );
+  });
+}

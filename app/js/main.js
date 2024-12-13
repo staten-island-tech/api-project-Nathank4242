@@ -132,7 +132,7 @@ document
 async function searchCard(data) {
   Domselectors.container.innerHTML = "";
   data.forEach((thing) => {
-    // Check if drops exists before putting it in a card
+    // Check if drops ex ists before putting it in a card
 
     const dropsHTML = thing.drops
       ? `<h2 class="card-name text-red-500 text-sm">Drops: [${thing.drops}]</h2>`
